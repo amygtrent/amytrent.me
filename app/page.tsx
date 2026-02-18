@@ -1,7 +1,9 @@
 import Image from "next/image";
-import { Satisfy } from 'next/font/google';
+import { Baskervville_SC } from 'next/font/google';
+import {Inconsolata} from 'next/font/google';
 
-const satisfy = Satisfy({ subsets: ['latin'], weight: '400' });
+const baskervvilleSC = Baskervville_SC({ subsets: ['latin'], weight: '400' });
+const inconsolata = Inconsolata({ subsets: ['latin'], weight: '400'});
 
 export default function Home() {
   return (
@@ -9,7 +11,7 @@ export default function Home() {
       
 
       {/* Heading */}
-      <h1 className={`${satisfy.className} text-4xl font-bold text-black mb-4 text-center`}>
+      <h1 className={`${baskervvilleSC.className} text-4xl font-bold text-black mb-4 text-center`}>
         Hey, I'm Amy Trent
       </h1>
 
@@ -21,9 +23,11 @@ export default function Home() {
       {/* Placeholder buttons */}
       <div className="flex gap-4">
         <a
-          href="#"
+          href="/resume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
           className="px-6 py-3 rounded-full bg-black text-white hover:bg-zinc-800 transition"
-        >
+          >
           Resume
         </a>
         <a
