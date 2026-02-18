@@ -39,10 +39,10 @@ export default function Home() {
           Résumé
         </a>
         <a
-          href="#"
+          href="https://www.linkedin.com/in/amy-trent-b80944392/"
           className="px-6 py-3 rounded-full border border-black text-black hover:bg-black hover:text-white transition"
         >
-          Portfolio
+          LinkedIn
         </a>
       </div>
     </div>
