@@ -20,7 +20,7 @@ export default function Home() {
       className="rounded-full object-cover mb-6 shadow-lg"
       />
       <h1 className={`${baskervvilleSC.className} text-4xl font-bold text-black mb-4 text-center`}>
-        Hey, I'm Amy
+        Hey, I'm Amy T
       </h1>
 
       {/* Description */}
