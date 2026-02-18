@@ -7,6 +7,7 @@ const inconsolata = Inconsolata({ subsets: ['latin'], weight: '400'});
 
 export default function Home() {
   return (
+    <>
     <div className="flex min-h-screen flex-col items-center justify-center bg-blue-100 font-sans p-8">
       
 
@@ -45,5 +46,21 @@ export default function Home() {
         </a>
       </div>
     </div>
+
+    <div id="projects" className="min-h-screen bg-white flex flex-col items-center justify-start p-8">
+      <h2 className="text-3xl font-bold text black mb-6">Projects</h2>
+
+      {/* Projects */}
+      <div className="max-w-2xl mb-6 p-4 border border-gray-200 shadow-sm rounded-lg">
+        <h3 className="text-xl font-semibold mb-2"> Dog Cookie Dispenser</h3>
+        <p>Designed a dog cookie dispenser.</p>
+      </div>
+      
+      <div className="max-w-2xl mb-6 p-4 border border-gray-200 shadow-sm rounded-lg">
+        <h3 className="text-xl font-semibold mb-2">Dragon Head</h3>
+        <p>Designed a 3D printed dragon head inspired by Toothless from How to Train Your Dragon.</p>
+      </div>
+      </div>
+      </>
   );
 }
