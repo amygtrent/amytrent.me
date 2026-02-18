@@ -24,7 +24,7 @@ export default function Home() {
 
       {/* Description */}
       <p className="text-lg text-zinc-600 text-center max-w-md mb-8">
-        I do engineering! Woohoo!
+        I'm a first year mechanical engineering student at the University of British Columbia.
       </p>
 
       {/* Placeholder buttons */}
