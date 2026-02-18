@@ -15,7 +15,7 @@ export default function Home() {
 
       {/* Description */}
       <p className="text-lg text-zinc-600 text-center max-w-md mb-8">
-        Woohoo
+        I do engineering! Woohoo!
       </p>
 
       {/* Placeholder buttons */}
