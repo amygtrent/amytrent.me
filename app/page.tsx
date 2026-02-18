@@ -14,8 +14,8 @@ export default function Home() {
       <Image
       src="/gradPhoto.jpeg"
       alt="Grade Photo"
-      width={400}
-      height={400}
+      width={250}
+      height={250}
       className="rounded-full object-cover mb-6 shadow-lg"
       />
       <h1 className={`${baskervvilleSC.className} text-4xl font-bold text-black mb-4 text-center`}>
@@ -35,7 +35,7 @@ export default function Home() {
           rel="noopener noreferrer"
           className="px-6 py-3 rounded-full bg-black text-white hover:bg-zinc-800 transition"
           >
-          Resume
+          Résumé
         </a>
         <a
           href="#"
