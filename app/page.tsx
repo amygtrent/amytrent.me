@@ -24,7 +24,7 @@ export default function Home() {
       </h1>
 
       {/* Description */}
-      <p className="text-lg text-zinc-600 text-center max-w-md mb-8">
+      <p className="text-lg text-black text-center max-w-md mb-8">
         I'm a first year mechanical engineering student at the University of British Columbia.
       </p>
 
@@ -48,15 +48,15 @@ export default function Home() {
     </div>
 
     <div id="projects" className="min-h-screen bg-white flex flex-col items-center justify-start p-8">
-      <h2 className="text-3xl font-bold text black mb-6">Projects</h2>
+      <h2 className="text-3xl font-bold text-black mb-6">Projects</h2>
 
       {/* Projects */}
-      <div className="max-w-2xl mb-6 p-4 border border-gray-200 shadow-sm rounded-lg">
+      <div className="max-w-2xl mb-6 p-4 border border-black shadow-sm rounded-lg">
         <h3 className="text-xl font-semibold mb-2"> Dog Cookie Dispenser</h3>
         <p>Designed a dog cookie dispenser.</p>
       </div>
       
-      <div className="max-w-2xl mb-6 p-4 border border-gray-200 shadow-sm rounded-lg">
+      <div className="max-w-2xl mb-6 p-4 border border-black shadow-sm rounded-lg">
         <h3 className="text-xl font-semibold mb-2">Dragon Head</h3>
         <p>Designed a 3D printed dragon head inspired by Toothless from How to Train Your Dragon.</p>
       </div>
