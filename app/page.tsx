@@ -23,7 +23,7 @@ export default function Home() {
       {/* Placeholder buttons */}
       <div className="flex gap-4">
         <a
-          href="/resume.pdf"
+          href="/resume_2026.pdf"
           target="_blank"
           rel="noopener noreferrer"
           className="px-6 py-3 rounded-full bg-black text-white hover:bg-zinc-800 transition"
