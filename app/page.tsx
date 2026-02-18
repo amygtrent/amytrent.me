@@ -14,8 +14,8 @@ export default function Home() {
       <Image
       src="/gradPhoto.jpeg"
       alt="Grade Photo"
-      width={200}
-      height={200}
+      width={400}
+      height={400}
       className="rounded-full object-cover mb-6 shadow-lg"
       />
       <h1 className={`${baskervvilleSC.className} text-4xl font-bold text-black mb-4 text-center`}>
