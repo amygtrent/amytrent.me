@@ -60,11 +60,11 @@ export default function Home() {
 
           {/* Right Side */}
           <div className="w-full md:w-1/2 flex justify-center">
-            <div className="relative w-[400px] h-[400px] group">
+            <div className="relative w-[500px] h-[600px] aspect-[4/3] group">
            <img
              src="/cookieDispenserFront.png"
              alt="Dog Cookie Dispenser"
-             className="w-full h-full object-cover rounded-lg transition-opacity duration-300 group-hover:opacity-0"
+             className="w-full h-full object-contain rounded-lg transition-opacity duration-300 group-hover:opacity-0"
            />
            <img
               src="/cookieDispenserTop.png"
@@ -89,16 +89,16 @@ export default function Home() {
 
           {/* Right Side */}
           <div className="w-full md:w-1/2 flex justify-center">
-            <div className="relative w-[400px] h-[400px] group">
+            <div className="relative w-[500px] h-[600px] aspect-[4/3] group">
               <img
                 src="/dragonHeadFront.png"
                 alt="Dragon Head"
-                className="w-full h-full object-cover rounded-lg transition-opacity duration-300"
+                className="w-full h-full object-contain rounded-lg transition-opacity duration-300"
               />
               <img
                 src="/dragonHeadTop.png"
                 alt="Dragon Head Hover"
-                className="absolute top-0 left-0 w-full h-full object-cover rounded-lg opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                className="absolute top-0 left-0 w-full h-full object-contain rounded-lg opacity-0 transition-opacity duration-300 group-hover:opacity-100"
               />
             </div>
           </div>
