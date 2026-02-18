@@ -8,7 +8,7 @@ const inconsolata = Inconsolata({ subsets: ['latin'], weight: '400'});
 export default function Home() {
   return (
     <>
-    <div className="flex h-2/3 flex-col items-center justify-center bg-blue-200 font-sans p-8">
+    <div className="flex h-3/4 flex-col items-center justify-center bg-blue-200 font-sans p-8">
       
 
       {/* Heading */}
