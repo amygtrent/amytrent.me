@@ -15,7 +15,7 @@ export default function Home() {
 
       {/* Description */}
       <p className="text-lg text-zinc-600 dark:text-zinc-400 text-center max-w-md mb-8">
-        This is my first Next.js site. You can edit this text in <code>page.tsx</code> and see changes instantly.
+        Woohoo
       </p>
 
       {/* Placeholder buttons */}
