@@ -14,14 +14,14 @@ export default function Home() {
   <img
     src="/gear.png"
     alt="Gear"
-    className="absolute left-0 top-1/2 w-120 h-120 -translate-x-1/2 -translate-y-1/2 opacity-50 animate-spin-slow"
+    className="absolute left-0 top-1/2 w-115 h-115 -translate-x-1/3 -translate-y-1/2 opacity-50 animate-spin-slow"
   />
 
   {/* Right Spinning Gear */}
   <img
     src="/gear.png"
     alt="Gear"
-    className="absolute right-0 top-1/2 w-120 h-120 translate-x-1/2 -translate-y-1/2 opacity-40 animate-spin-slow-reverse"
+    className="absolute right-0 top-1/2 w-115 h-115 translate-x-1/3 -translate-y-1/2 opacity-40 animate-spin-slow-reverse"
   />
         <Image
           src="/gradPhoto.jpeg"
