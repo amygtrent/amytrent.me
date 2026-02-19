@@ -12,54 +12,35 @@ export default function Home() {
       <div className="flex h-3/4 flex-col items-center justify-center bg-blue-200 font-sans p-8 relative overflow-hidden">
   {/* Left Gear */}
 <svg
-  className="absolute -left-40 top-1/4 w-64 h-64 text-black opacity-30 animate-spin-slow"
+  className="absolute -left-16 top-1/4 w-40 h-40 text-black opacity-70 animate-spin-slow"
   viewBox="0 0 100 100"
   fill="currentColor"
 >
-  <circle cx="50" cy="50" r="45" stroke="currentColor" strokeWidth="8" fill="none" />
-  {/* Gear teeth */}
-  {[...Array(12)].map((_, i) => {
-    const angle = (i * 360) / 12;
-    return (
-      <rect
-        key={i}
-        x="47"
-        y="0"
-        width="6"
-        height="12"
-        rx="1"
-        ry="1"
-        transform={`rotate(${angle} 50 50)`}
-      />
-    );
-  })}
+  <circle cx="50" cy="50" r="30" stroke="currentColor" strokeWidth="6" fill="none" />
+  <circle cx="50" cy="50" r="10" fill="currentColor" />
+  <g>
+    <rect x="45" y="0" width="10" height="20" fill="currentColor" />
+    <rect x="45" y="80" width="10" height="20" fill="currentColor" />
+    <rect x="0" y="45" width="20" height="10" fill="currentColor" />
+    <rect x="80" y="45" width="20" height="10" fill="currentColor" />
+  </g>
 </svg>
 
 {/* Right Gear */}
 <svg
-  className="absolute -right-40 bottom-1/4 w-72 h-72 text-black opacity-20 animate-spin-slow-reverse"
+  className="absolute -right-20 bottom-1/3 w-48 h-48 text-black opacity-60 animate-spin-slow-reverse"
   viewBox="0 0 100 100"
   fill="currentColor"
 >
-  <circle cx="50" cy="50" r="50" stroke="currentColor" strokeWidth="6" fill="none" />
-  {[...Array(16)].map((_, i) => {
-    const angle = (i * 360) / 16;
-    return (
-      <rect
-        key={i}
-        x="48"
-        y="0"
-        width="4"
-        height="10"
-        rx="0.5"
-        ry="0.5"
-        transform={`rotate(${angle} 50 50)`}
-      />
-    );
-  })}
+  <circle cx="50" cy="50" r="30" stroke="currentColor" strokeWidth="6" fill="none" />
+  <circle cx="50" cy="50" r="10" fill="currentColor" />
+  <g>
+    <rect x="45" y="0" width="10" height="20" fill="currentColor" />
+    <rect x="45" y="80" width="10" height="20" fill="currentColor" />
+    <rect x="0" y="45" width="20" height="10" fill="currentColor" />
+    <rect x="80" y="45" width="20" height="10" fill="currentColor" />
+  </g>
 </svg>
-
-
 
         <Image
           src="/gradPhoto.jpeg"
