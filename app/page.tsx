@@ -47,7 +47,7 @@ export default function Home() {
         <h2 className="text-3xl font-bold text-black mb-6">Projects</h2>
 
         {/* Dog Cookie Dispenser */}
-        <div className="w-full flex flex-col md:flex-row items-start justify-between py-12 px-8">
+        <div className="w-full border rounded-lg p-6 mb-8 flex flex-col md:flex-row items-start md:items-center">
           {/* Left Side */}
           <div className="w-full md:w-1/2 mb-6 md:mb-0">
             <h3 className="text-3xl text-black font-semibold mb-4">
@@ -60,7 +60,7 @@ export default function Home() {
 
           {/* Right Side */}
           <div className="w-full md:w-1/2 flex justify-center">
-            <div className="relative w-[500px] aspect-[4/3] group">
+            <div className="relative w-full w-[500px] aspect-[4/3] group">
               <img
                 src="/cookieDispenserFront.png"
                 alt="Dog Cookie Dispenser"
@@ -89,7 +89,7 @@ export default function Home() {
 
           {/* Right Side */}
           <div className="w-full md:w-1/2 flex justify-center">
-            <div className="relative w-[500px] aspect-[4/3] group">
+            <div className="relative w-full w-[500px] aspect-[4/3] group">
               <img
                 src="/dragonHeadFront.png"
                 alt="Dragon Head"
