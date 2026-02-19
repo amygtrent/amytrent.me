@@ -34,7 +34,7 @@ export default function Home() {
           Hey, I'm Amy Trent
         </h1>
         <p className="text-lg text-black text-center max-w-md mb-8">
-          I'm a first year mechanical engineering student at the <a href="https://www.ubc.ca" className="text-blue-600 underline hover:text-blue-800">University of British Columbia</a>.
+          I'm a first-year Mechanical Engineering student at the <a href="https://www.ubc.ca" className="text-blue-600 underline hover:text-blue-800">University of British Columbia</a>, focusing in mechatronics. I enjoy hands-on projects, robotics, and creative engineering design.
         </p>
 
         <div className="flex gap-4">
@@ -70,7 +70,10 @@ export default function Home() {
               Feb. 2021 - April 2021
             </span>
             <p className="text-lg text-black">
-              Designed a dog cookie dispenser.
+              As a Grade 8 project, I designed a dog cookie dispenser to test whether my Great Dane, Finnegan, could distinguish between two similar sounds. Built around a random timer, the dispenser would play the tones throughout the day. One sound resulted in absolutely nothing; however, the other would play a few seconds before a cookie was dispensed. I was curious whether my dog would learn to ignore one sound and get excited about the other. Unfortunately, the experiment took a turn and resulted in sick-of-cookies dog who decided he didn't like them anymore, so I never reaching a conclusion about his sound-association abilities.
+              </p>
+              <p className="text-lg text-black mt-4">
+              This project involved a plank on a rack and pinion system. A motor would drive the plank forward, pushing a dog cookie out of the tower, until it hit a button signaling it was at the end of its path. It would then reverse until it hit a different button which would tell the Arduino Nano that it had returned to its original position, stopping the motor. The dispenser also featured a small speaker to play the tones, along with a couple of LEDs to indicate which sound was playing. The entire shell of the device was designed in 123D Design and 3D printed, while the hardware was coded in C on an Arduino Nano.
             </p>
           </div>
 
@@ -102,7 +105,10 @@ export default function Home() {
               Sept. 2023 - Jan. 2024
             </span>
             <p className="text-lg text-black">
-              Designed a dragon head inspired by Toothless from <span className="italic">How to Train Your Dragon</span>.
+              This project was inspired by Toothless from <span className="italic">How to Train Your Dragon</span>. As a kid, I watched the movie and was frustrated that I couldn't have my own pet dragon. When I was 15, I decided a robot dragon would have to suffice. I created this Toothless head with the ability to shake its ears, move its LED eyes, and "breathe fire" with the help of an LED, all in accordance to where someone was positioned in front of it. Two proximity sensors detected whether someone had approached Toothless from the side or the front. If from the side, Toothless would become excited, moving his ears up and down a few times and looking towards whichever side the person was on. However, if he sensed that someone was directly in front of him, he would become scared: his ears would quiver non-stop and he would shoot plasma fire.
+            </p>
+            <p className="text-lg text-black mt-4">
+              The shell of the dragon head was created using 123D Design and 3D printing. Inside of it, a singular servo was connected with a wire to the two ears. When the servo moved back and forth, the ears were pulled to create the wiggling effect. Each eye was composed of three different green LEDs. At a given time, one LED from each eye would be lit, changing depending on the direction they were meant to be looking. The "fire" light was positioned near his mouth, shining blue to emulate the blue plasma that Toothless shoots in the movie. Through an Aruduino MEGA2560 and an Arduino Nano, these components were hooked up to the transmitter and reciever sensors. If an object was detected in front of them, they would send a logic signal to the circuit boards, signalling the detection. The boards, programmed using C, would then respond by causing the dragon to react in relation to where that object was positioned.
             </p>
           </div>
 
