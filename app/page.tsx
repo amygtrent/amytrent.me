@@ -11,22 +11,54 @@ export default function Home() {
       {/* Intro Section */}
       <div className="flex h-3/4 flex-col items-center justify-center bg-blue-200 font-sans p-8 relative overflow-hidden">
   {/* Left Gear */}
-  <svg
-    className="absolute -left-32 top-1/3 w-48 h-48 animate-spin-slow"
-    viewBox="0 0 512 512"
-    fill="black"
-  >
-    <path d="M487.4 315.7l-42.7-24.7c2.5-12.6 2.5-25.6 0-38.2l42.7-24.7c12.2-7.1 16.3-22.6 9.2-34.8l-45.3-78.5c-7.1-12.2-22.6-16.3-34.8-9.2l-42.7 24.7c-20.1-17.3-43-31-67.9-40.8V24c0-13.3-10.7-24-24-24h-90.6c-13.3 0-24 10.7-24 24v49.1c-24.9 9.8-47.8 23.5-67.9 40.8L95 64c-12.2-7.1-27.7-3-34.8 9.2L14.9 151.7c-7.1 12.2-3 27.7 9.2 34.8l42.7 24.7c-2.5 12.6-2.5 25.6 0 38.2l-42.7 24.7c-12.2 7.1-16.3 22.6-9.2 34.8l45.3 78.5c7.1 12.2 22.6 16.3 34.8 9.2l42.7-24.7c20.1 17.3 43 31 67.9 40.8V488c0 13.3 10.7 24 24 24h90.6c13.3 0 24-10.7 24-24v-49.1c24.9-9.8 47.8-23.5 67.9-40.8l42.7 24.7c12.2 7.1 27.7 3 34.8-9.2l45.3-78.5c7.1-12.2 3-27.7-9.2-34.8zM256 336c-44.2 0-80-35.8-80-80s35.8-80 80-80 80 35.8 80 80-35.8 80-80 80z"/>
-  </svg>
+<svg
+  className="absolute -left-40 top-1/4 w-64 h-64 text-black opacity-30 animate-spin-slow"
+  viewBox="0 0 100 100"
+  fill="currentColor"
+>
+  <circle cx="50" cy="50" r="45" stroke="currentColor" strokeWidth="8" fill="none" />
+  {/* Gear teeth */}
+  {[...Array(12)].map((_, i) => {
+    const angle = (i * 360) / 12;
+    return (
+      <rect
+        key={i}
+        x="47"
+        y="0"
+        width="6"
+        height="12"
+        rx="1"
+        ry="1"
+        transform={`rotate(${angle} 50 50)`}
+      />
+    );
+  })}
+</svg>
 
-  {/* Right Gear */}
-  <svg
-    className="absolute -right-32 bottom-1/4 w-56 h-56 animate-spin-slow-reverse"
-    viewBox="0 0 512 512"
-    fill="black"
-  >
-    <path d="M487.4 315.7l-42.7-24.7c2.5-12.6 2.5-25.6 0-38.2l42.7-24.7c12.2-7.1 16.3-22.6 9.2-34.8l-45.3-78.5c-7.1-12.2-22.6-16.3-34.8-9.2l-42.7 24.7c-20.1-17.3-43-31-67.9-40.8V24c0-13.3-10.7-24-24-24h-90.6c-13.3 0-24 10.7-24 24v49.1c-24.9 9.8-47.8 23.5-67.9 40.8L95 64c-12.2-7.1-27.7-3-34.8 9.2L14.9 151.7c-7.1 12.2-3 27.7 9.2 34.8l42.7 24.7c-2.5 12.6-2.5 25.6 0 38.2l-42.7 24.7c-12.2 7.1-16.3 22.6-9.2 34.8l45.3 78.5c7.1 12.2 22.6 16.3 34.8 9.2l42.7-24.7c20.1 17.3 43 31 67.9 40.8V488c0 13.3 10.7 24 24 24h90.6c13.3 0 24-10.7 24-24v-49.1c24.9-9.8 47.8-23.5 67.9-40.8l42.7 24.7c12.2 7.1 27.7 3 34.8-9.2l45.3-78.5c7.1-12.2 3-27.7-9.2-34.8zM256 336c-44.2 0-80-35.8-80-80s35.8-80 80-80 80 35.8 80 80-35.8 80-80 80z"/>
-  </svg>
+{/* Right Gear */}
+<svg
+  className="absolute -right-40 bottom-1/4 w-72 h-72 text-black opacity-20 animate-spin-slow-reverse"
+  viewBox="0 0 100 100"
+  fill="currentColor"
+>
+  <circle cx="50" cy="50" r="50" stroke="currentColor" strokeWidth="6" fill="none" />
+  {[...Array(16)].map((_, i) => {
+    const angle = (i * 360) / 16;
+    return (
+      <rect
+        key={i}
+        x="48"
+        y="0"
+        width="4"
+        height="10"
+        rx="0.5"
+        ry="0.5"
+        transform={`rotate(${angle} 50 50)`}
+      />
+    );
+  })}
+</svg>
+
 
 
         <Image
