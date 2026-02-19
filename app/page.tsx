@@ -47,7 +47,7 @@ export default function Home() {
         <h2 className="text-3xl font-bold text-black mb-6">Projects</h2>
 
         {/* Dog Cookie Dispenser */}
-        <div className="w-full border rounded-lg p-6 mb-8 flex flex-col md:flex-row items-start md:items-center">
+        <div className="w-full border-4 rounded-lg p-6 mb-8 flex flex-col md:flex-row items-start md:items-center">
           {/* Left Side */}
           <div className="w-full md:w-1/2 mb-6 md:mb-0">
             <h3 className="text-3xl text-black font-semibold mb-4">
@@ -60,23 +60,23 @@ export default function Home() {
 
           {/* Right Side */}
           <div className="w-full md:w-1/2 flex justify-center">
-            <div className="relative w-full w-[500px] aspect-[4/3] group">
+            <div className="relative w-full max-w-[500px] aspect-[4/3] group rounded-xl overflow-hidden bg-gray-100">
               <img
                 src="/cookieDispenserFront.png"
                 alt="Dog Cookie Dispenser"
-                className="w-full h-full object-cover rounded-lg transition-opacity duration-300 group-hover:opacity-0"
+                className="w-full h-full object-contain rounded-lg transition-opacity duration-300 group-hover:opacity-0"
               />
               <img
                 src="/cookieDispenserTop.png"
                 alt="Dog Cookie Dispenser Hover"
-                className="absolute top-0 left-0 w-full h-full object-cover rounded-lg opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                className="absolute top-0 left-0 w-full h-full object-contain rounded-lg opacity-0 transition-opacity duration-300 group-hover:opacity-100"
               />
             </div>
           </div>
         </div>
 
         {/* Dragon Head */}
-        <div className="w-full flex flex-col md:flex-row items-start justify-between py-12 px-8">
+        <div className="w-full border-4 rounded-lg p-6 mb-8 flex flex-col md:flex-row items-start md:items-center">
           {/* Left Side */}
           <div className="w-full md:w-1/2 mb-6 md:mb-0">
             <h3 className="text-3xl text-black font-semibold mb-4">
@@ -89,16 +89,16 @@ export default function Home() {
 
           {/* Right Side */}
           <div className="w-full md:w-1/2 flex justify-center">
-            <div className="relative w-full w-[500px] aspect-[4/3] group">
+            <div className="relative w-full max-w-[500px] aspect-[4/3] group rounded-xl overflow-hidden bg-gray-100">
               <img
                 src="/dragonHeadFront.png"
                 alt="Dragon Head"
-                className="w-full h-full object-cover rounded-lg transition-opacity duration-300"
+                className="w-full h-full object-contain rounded-lg transition-opacity duration-300"
               />
               <img
                 src="/dragonHeadTop.png"
                 alt="Dragon Head Hover"
-                className="absolute top-0 left-0 w-full h-full object-cover rounded-lg opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                className="absolute top-0 left-0 w-full h-full object-contain rounded-lg opacity-0 transition-opacity duration-300 group-hover:opacity-100"
               />
             </div>
           </div>
