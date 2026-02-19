@@ -34,7 +34,7 @@ export default function Home() {
           Hey, I'm Amy Trent
         </h1>
         <p className="text-lg text-black text-center max-w-md mb-8">
-          I'm a first year mechanical engineering student at the University of British Columbia.
+          I'm a first year mechanical engineering student at the <a href="https://www.ubc.ca" className="text-blue-600 underline hover:text-blue-800">University of British Columbia</a>.
         </p>
 
         <div className="flex gap-4">
@@ -123,6 +123,51 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      {/* Contact Section */}
+<div className="w-full flex justify-center bg-white pb-12">
+<div id="contact" 
+className="w-full max-w-5xl bg-white px-8 flex flex-col items-center">
+  <h2 className="text-3xl font-medium text-black mb-4">Contact Me</h2>
+  
+  <form 
+    action="https://formspree.io/f/xvzbqldp" 
+    method="POST" 
+    className="w-full flex flex-col gap-4"
+  >
+    <input
+      type="text"
+      name="name"
+      placeholder="Name"
+      required
+      className="px-4 py-2 border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-200 text-black"
+    />
+    
+    <input
+      type="email"
+      name="email"
+      placeholder="Email"
+      required
+      className="px-4 py-2 border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-200 text-black"
+    />
+    
+    <textarea
+      name="message"
+      placeholder="Message"
+      required
+      rows={6}
+      className="px-4 py-2 border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-200 text-black"
+    />
+    
+    <button
+      type="submit"
+      className="px-6 py-3 bg-blue-200 text-black rounded-lg hover:bg-blue-300 transition"
+    >
+      Send Message
+    </button>
+  </form>
+</div>
+</div>
     </>
   );
 }
