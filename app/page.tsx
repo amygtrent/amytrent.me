@@ -44,13 +44,13 @@ export default function Home() {
 
       {/* Projects Section */}
       <div id="projects" className="min-h-screen bg-white flex flex-col items-center justify-start p-8">
-        <h2 className="text-3xl font-bold text-black mb-6">Projects</h2>
+        <h2 className="text-3xl font-medium text-black mb-6">Projects</h2>
 
         {/* Dog Cookie Dispenser */}
         <div className="w-full border-4 rounded-lg p-6 mb-8 flex flex-col md:flex-row items-start md:items-center">
           {/* Left Side */}
           <div className="w-full md:w-1/2 mb-6 md:mb-0">
-            <h3 className="text-3xl text-black font-semibold mb-4">
+            <h3 className="text-3xl text-black font-medium mb-4">
               Dog Cookie Dispenser
             </h3>
             <p className="text-lg text-black">
@@ -79,7 +79,7 @@ export default function Home() {
         <div className="w-full border-4 rounded-lg p-6 mb-8 flex flex-col md:flex-row items-start md:items-center">
           {/* Left Side */}
           <div className="w-full md:w-1/2 mb-6 md:mb-0">
-            <h3 className="text-3xl text-black font-semibold mb-4">
+            <h3 className="text-3xl text-black font-medium mb-4">
               Dragon Head
             </h3>
             <p className="text-lg text-black">
@@ -93,7 +93,7 @@ export default function Home() {
               <img
                 src="/dragonHeadFront.png"
                 alt="Dragon Head"
-                className="w-full h-full object-contain rounded-lg transition-opacity duration-300"
+                className="w-full h-full object-contain rounded-lg transition-opacity duration-300 group-hover:opacity-0"
               />
               <img
                 src="/dragonHeadTop.png"
