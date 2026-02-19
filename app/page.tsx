@@ -9,7 +9,25 @@ export default function Home() {
   return (
     <>
       {/* Intro Section */}
-      <div className="flex h-3/4 flex-col items-center justify-center bg-blue-200 font-sans p-8">
+      <div className="flex h-3/4 flex-col items-center justify-center bg-blue-200 font-sans p-8 relative overflow-hidden">
+  {/* Left Gear */}
+  <svg
+    className="absolute -left-16 top-1/4 w-32 h-32 text-blue-400 opacity-50 rotate-12"
+    viewBox="0 0 100 100"
+    fill="currentColor"
+  >
+    <path d="M50 30 L60 30 L65 40 ..." />
+  </svg>
+
+  {/* Right Gear */}
+  <svg
+    className="absolute -right-20 bottom-1/3 w-40 h-40 text-blue-300 opacity-40 -rotate-6"
+    viewBox="0 0 100 100"
+    fill="currentColor"
+  >
+    <path d="M50 30 L60 30 L65 40 ..." />
+  </svg>
+
         <Image
           src="/gradPhoto.jpeg"
           alt="Grade Photo"
