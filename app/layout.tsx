@@ -16,8 +16,8 @@ export const metadata: Metadata = {
   title: "Amy Trent",
   description: "Amy Trent Portfolio",
   icons: {
-    icon: "/favicon3.png",      // main favicon
-    apple: "/favicon3.png",     // iOS touch icon
+    icon: "/favicon3.png?v=2",      // main favicon
+    apple: "/favicon3.png?v=2",     // iOS touch icon
   },
 };
 
