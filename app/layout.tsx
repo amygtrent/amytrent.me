@@ -12,25 +12,21 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+// Metadata with favicon
 export const metadata: Metadata = {
   title: "Amy Trent",
   description: "Amy Trent Portfolio",
+  icons: {
+    icon: "/favicon2.png", // PNG in public folder
+    apple: "/favicon2.png", // for iOS
+  },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <head>
-        {/* Favicon */}
-        <link rel="icon" type="image/png" href="/favicon2.png" />
-        {/* Optional: touch icon for iOS */}
-        <link rel="apple-touch-icon" href="/favicon2.png" />
-        <title>My Site</title>
-      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
@@ -39,5 +35,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-
