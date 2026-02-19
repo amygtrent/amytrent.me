@@ -12,19 +12,20 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// Metadata with favicon
 export const metadata: Metadata = {
   title: "Amy Trent",
   description: "Amy Trent Portfolio",
   icons: {
-    icon: "/favicon2.png", // PNG in public folder
-    apple: "/favicon2.png", // for iOS
+    icon: "/favicon3.png",      // main favicon
+    apple: "/favicon3.png",     // iOS touch icon
   },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{ children: React.ReactNode }>) {
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html lang="en">
       <body
