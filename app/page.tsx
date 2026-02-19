@@ -71,7 +71,7 @@ export default function Home() {
           {/* Left Side */}
           <div className="w-full md:w-1/2 mb-6 md:mb-0">
             <h3 className="text-3xl text-black font-medium mb-4">
-              Dog Cookie Dispenser
+              Automated Arduino 3D Printed Dog Cookie Dispenser
             </h3>
             <span className="text-sm text-gray-600 mb-4 block">
               Feb. 2021 - April 2021
@@ -118,7 +118,7 @@ export default function Home() {
           {/* Left Side */}
           <div className="w-full md:w-1/2 mb-6 md:mb-0">
             <h3 className="text-3xl text-black font-medium mb-4">
-              Dragon Head
+              3D Printed Servo Dragon Head
             </h3>
             <span className="text-sm text-gray-600 mb-4 block">
               Sept. 2023 - Jan. 2024
