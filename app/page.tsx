@@ -14,14 +14,14 @@ export default function Home() {
   <img
     src="/gear.png"
     alt="Gear"
-    className="absolute left-0 top-1/2 w-115 h-115 -translate-x-1/3 -translate-y-1/2 opacity-50 animate-spin-slow"
+    className="hidden lg:block absolute left-0 top-1/2 w-115 h-115 -translate-x-1/3 -translate-y-1/2 opacity-50 animate-spin-slow"
   />
 
   {/* Right Spinning Gear */}
   <img
     src="/gear.png"
     alt="Gear"
-    className="absolute right-0 top-1/2 w-115 h-115 translate-x-1/3 -translate-y-1/2 opacity-40 animate-spin-slow-reverse"
+    className="hidden lg:block absolute right-0 top-1/2 w-115 h-115 translate-x-1/3 -translate-y-1/2 opacity-40 animate-spin-slow-reverse"
   />
         <Image
           src="/gradPhoto.jpeg"
@@ -66,6 +66,9 @@ export default function Home() {
             <h3 className="text-3xl text-black font-medium mb-4">
               Dog Cookie Dispenser
             </h3>
+            <span className="text-sm text-gray-600 mb-4 block">
+              Feb. 2021 - April 2021
+            </span>
             <p className="text-lg text-black">
               Designed a dog cookie dispenser.
             </p>
@@ -95,6 +98,9 @@ export default function Home() {
             <h3 className="text-3xl text-black font-medium mb-4">
               Dragon Head
             </h3>
+            <span className="text-sm text-gray-600 mb-4 block">
+              Sept. 2023 - Jan. 2024
+            </span>
             <p className="text-lg text-black">
               Designed a dragon head inspired by Toothless from <span className="italic">How to Train Your Dragon</span>.
             </p>
