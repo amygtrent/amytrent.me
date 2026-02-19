@@ -60,7 +60,7 @@ export default function Home() {
 
           {/* Right Side */}
           <div className="w-full md:w-1/2 flex justify-center">
-            <div className="relative w-full max-w-[500px] aspect-[4/3] group rounded-xl overflow-hidden bg-gray-100">
+            <div className="relative w-full max-w-[500px] aspect-[4/3] group rounded-xl overflow-hidden bg-white">
               <img
                 src="/cookieDispenserFront.png"
                 alt="Dog Cookie Dispenser"
@@ -89,7 +89,7 @@ export default function Home() {
 
           {/* Right Side */}
           <div className="w-full md:w-1/2 flex justify-center">
-            <div className="relative w-full max-w-[500px] aspect-[4/3] group rounded-xl overflow-hidden bg-gray-100">
+            <div className="relative w-full max-w-[500px] aspect-[4/3] group rounded-xl overflow-hidden bg-white">
               <img
                 src="/dragonHeadFront.png"
                 alt="Dragon Head"
