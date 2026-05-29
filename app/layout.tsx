@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -16,22 +17,23 @@ export const metadata: Metadata = {
   title: "Amy Trent",
   description: "Amy Trent Portfolio",
   icons: {
-    icon: "/favicon3.png?v=2",      // main favicon
-    apple: "/favicon3.png?v=2",     // iOS touch icon
+    icon: "/favicon3.png?v=2",
+    apple: "/favicon3.png?v=2",
   },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+        <Analytics />
       </body>
     </html>
   );
