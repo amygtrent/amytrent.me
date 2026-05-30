@@ -52,17 +52,18 @@ function Carousel({ items }: { items: MediaItem[] }) {
           />
 
           {currentItem.hoverSrc && (
-            <img
-              src={currentItem.hoverSrc}
-              onMouseEnter={() => setHovered(true)}
-              onMouseLeave={() => setHovered(false)}
-              className="absolute inset-0 w-full h-full object-contain transition-opacity duration-500"
-              style={{
-                transform: `translateX(20px) scale(${currentItem.scale ?? 1})`,
-                opacity: hovered ? 1 : 0,
-              }}
-            />
-          )}
+          <img
+            src={currentItem.hoverSrc}
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
+            onTouchStart={() => setHovered(prev => !prev)}
+            className="absolute inset-0 w-full h-full object-contain transition-opacity duration-500"
+            style={{
+              transform: `translateX(20px) scale(${currentItem.scale ?? 1})`,
+              opacity: hovered ? 1 : 0,
+            }}
+          />
+        )}
 
           {!currentItem.hoverSrc && (
             <img
@@ -102,6 +103,10 @@ function Carousel({ items }: { items: MediaItem[] }) {
 }
 
 export default function Home() {
+  const [photoToggled, setPhotoToggled] = useState(false);
+const [toggledImage, setToggledImage] =
+  useState<"toothless" | "cookie" | "batmobile" | null>(null);
+  const [activeSkill, setActiveSkill] = useState<string | null>(null);
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
   const [activeTab, setActiveTab] = useState<"about" | "projects">("about");
   const [hovered, setHovered] = useState(false);
@@ -154,13 +159,33 @@ export default function Home() {
       raf = requestAnimationFrame(loop);
     };
 
-    raf = requestAnimationFrame(loop);
+   raf = requestAnimationFrame(loop);
     return () => cancelAnimationFrame(raf);
   }, [lastMoveTime]);
 
+  useEffect(() => {
+    const handleTouch = () => {
+      setActiveSkill(null);
+    };
+    if (activeSkill !== null) {
+      document.addEventListener("touchstart", handleTouch);
+    }
+    return () => document.removeEventListener("touchstart", handleTouch);
+  }, [activeSkill]);
+
+  useEffect(() => {
+    const handleTouch = () => {
+      setToggledImage(null);
+    };
+    if (toggledImage !== null) {
+      document.addEventListener("touchstart", handleTouch);
+    }
+    return () => document.removeEventListener("touchstart", handleTouch);
+  }, [toggledImage]);
+
   return (
     <>
-      <div className="overflow-x-hidden">
+      <div className="overflow-x-hidden min-w-0">
 
         {/* HEADER */}
         <div
@@ -233,10 +258,10 @@ export default function Home() {
           <div className="absolute inset-0 bg-black/25 pointer-events-none" />
 
           {/* TEXT + PORTRAIT */}
-          <div className="relative z-10 flex flex-col items-center -translate-y-15 md:scale-[1.3] scale-100 px-4">
-            <div className="relative h-[180px] md:h-[220px] flex items-center justify-center mb-10">
+          <div className="relative z-10 flex flex-col items-center -translate-y-15 md:scale-[1.1] lg:scale-[1.3] scale-100 px-4">
+            <div className="relative min-h-[140px] sm:min-h-[180px] md:h-[220px] flex items-center justify-center mb-10">
               <h1
-  className="text-4xl sm:text-6xl md:text-8xl font-black text-center leading-[1.05]"
+ className="text-7xl sm:text-7xl md:text-8xl font-black text-center leading-[1.05] w-full"
   style={{
     fontFamily: "Bebas Neue, sans-serif",
     color: "#2f53e5",
@@ -247,7 +272,7 @@ export default function Home() {
 </h1>
 
 <h1
-  className="absolute text-4xl sm:text-6xl md:text-8xl font-black text-center leading-[1.05]"
+ className="absolute text-7xl sm:text-7xl md:text-8xl font-black text-center leading-[1.05] w-full"
   style={{
     fontFamily: "Bebas Neue, sans-serif",
     color: "transparent",
@@ -261,26 +286,27 @@ export default function Home() {
             </div>
 
             {/* PORTRAIT */}
-            <div className="relative flex items-center justify-center -mt-10">
+            <div className="relative flex items-center justify-center -mt-1 sm:-mt-10">
               <div className="absolute w-[200px] h-[200px] md:w-[260px] md:h-[260px] rounded-full bg-gradient-to-br from-[#0b1587] to-[#2f53e5] blur-xl opacity-40"></div>
 
               <div className="relative w-[220px] h-[220px] md:w-[240px] md:h-[240px] rounded-full p-[6px] bg-gradient-to-br from-[#2f53e5] via-[#0b1587] to-[#2f53e5]">
-                <div className="w-full h-full rounded-full p-[4px] bg-white">
-                  <div className="relative w-full h-full rounded-full overflow-hidden group">
-                    <Image
-                      src="/gradPhoto.jpeg"
-                      alt="Grad Photo"
-                      fill
-                      className="object-cover transition-opacity duration-500 group-hover:opacity-0"
-                    />
-                    <Image
-                      src="/babyMe.jpeg"
-                      alt="Baby Me"
-                      fill
-                      className="object-cover absolute top-0 left-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                    />
-                  </div>
-                </div>
+                <div className="relative w-full h-full rounded-full overflow-hidden">
+  
+             <button
+              type="button"
+              onMouseEnter={() => setPhotoToggled(true)}
+              onMouseLeave={() => setPhotoToggled(false)}
+              onTouchStart={() => setPhotoToggled(prev => !prev)}
+              className="relative w-full h-full p-0 border-0 bg-transparent cursor-pointer touch-manipulation"
+            >
+              <Image
+                src={photoToggled ? "/babyMe.jpeg" : "/gradPhoto.jpeg"}
+                alt="Portrait"
+                fill
+                className="object-cover transition-opacity duration-300 pointer-events-none select-none"
+              />
+            </button>
+              </div>
               </div>
             </div>
           </div>
@@ -289,36 +315,38 @@ export default function Home() {
           <div className="absolute bottom-0 left-0 w-full h-[4px] bg-gradient-to-r from-[#2f53e5] to-[#0b1587]" />
         </div>
 
-        {/* TAB SWITCHER */}
-        <div className="relative w-full left-1/2 -translate-x-1/2 flex bg-white border-b border-gray-300">
-          <button
-            className={`w-1/2 text-center py-3 ${
-              activeTab === "about"
-                ? "border-b-4 border-[#3b4cca] font-bold text-[#3b4cca]"
-                : "text-gray-700"
-            }`}
-            onClick={() => setActiveTab("about")}
-          >
-            About Me
-          </button>
+       {/* TAB SWITCHER */}
+<div className="relative w-full left-1/2 -translate-x-1/2 flex bg-white border-b-2 border-gray-300">
 
-          <button
-            className={`w-1/2 text-center py-3 ${
-              activeTab === "projects"
-                ? "border-b-4 border-[#3b4cca] font-bold text-[#3b4cca]"
-                : "text-gray-700"
-            }`}
-            onClick={() => setActiveTab("projects")}
-          >
-            Projects
-          </button>
-        </div>
+  <button
+    className={`w-1/2 text-center py-4 text-lg sm:text-xl md:text-2xl transition-all duration-200 ${
+      activeTab === "about"
+        ? "border-b-[5px] border-[#3b4cca] font-bold text-[#3b4cca]"
+        : "text-gray-700 hover:text-[#3b4cca]"
+    }`}
+    onClick={() => setActiveTab("about")}
+  >
+    About Me
+  </button>
+
+  <button
+    className={`w-1/2 text-center py-4 text-lg sm:text-xl md:text-2xl transition-all duration-200 ${
+      activeTab === "projects"
+        ? "border-b-[5px] border-[#3b4cca] font-bold text-[#3b4cca]"
+        : "text-gray-700 hover:text-[#3b4cca]"
+    }`}
+    onClick={() => setActiveTab("projects")}
+  >
+    Projects
+  </button>
+
+</div>
 {/* TAB CONTENT */}
 {activeTab === "about" && (
   <div className="w-full bg-white min-h-screen">
 
     {/* WHO AM I */}
-    <section className="w-full bg-[#1b2f77] text-white min-h-screen pt-24 md:pt-32 px-4 md:px-8 overflow-hidden">
+    <section className="w-full bg-[#1b2f77] text-white min-h-screen pt-24 md:pt-32 pb-24 md:pb-32 px-4 md:px-8 overflow-hidden">
       <div className="max-w-6xl mx-auto">
 
         <motion.h2
@@ -392,48 +420,75 @@ export default function Home() {
       </div>
     </section>
 
-    {/* SKILLS */}
-    <section className="w-full bg-white text-black min-h-screen px-4 md:px-8 pt-24 md:pt-42">
-      <div className="max-w-6xl mx-auto text-center">
+   {/* SKILLS */}
+<section className="w-full bg-white text-black px-4 md:px-8 pt-24 md:pt-42 pb-20 md:min-h-screen md:pb-32">
+  <div className="max-w-6xl mx-auto text-center">
 
-        <motion.h2
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="show"
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-5xl sm:text-7xl md:text-9xl font-bold text-center mb-10 text-[#1b2f77]"
-        >
-          Skills
-        </motion.h2>
+    <motion.h2
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="show"
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+      className="text-5xl sm:text-7xl md:text-9xl font-bold text-center mb-10 text-[#1b2f77]"
+    >
+      Skills
+    </motion.h2>
 
-        <div className="flex justify-center gap-6 sm:gap-10 flex-wrap">
-          {skills.map((s) => (
-            <motion.div
-              key={s.label}
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="show"
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true, amount: 0.3 }}
-              className="w-40 h-40 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-full border-2 border-[#0b1587] flex relative items-center justify-center overflow-hidden group"
+<div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-24 justify-items-center w-fit mx-auto">
+      {skills.map((s) => {
+        const isActive = activeSkill === s.label;
+
+        return (
+          <motion.div
+            key={s.label}
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true, amount: 0.3 }}
+            onTouchStart={(e) => {
+              e.stopPropagation();
+              setActiveSkill(prev => (prev === s.label ? null : s.label));
+            }}
+            className="w-40 h-40 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-full border-2 border-[#0b1587] flex relative items-center justify-center overflow-hidden cursor-pointer group"
+          >
+
+            {/* ICON */}
+            <img
+              src={s.img}
+              alt={s.label}
+              className={`
+              absolute w-16 sm:w-24 md:w-35 h-16 sm:h-24 md:h-35 object-contain transition-opacity duration-300
+
+              ${isActive ? "opacity-0" : "opacity-100"}
+
+              sm:group-hover:opacity-0
+            `}
+            />
+
+            {/* TEXT */}
+            <p
+             className={`
+              absolute text-[#0b1587] text-lg sm:text-2xl md:text-3xl font-bold text-center px-2 transition-opacity duration-300
+
+              ${isActive ? "opacity-100" : "opacity-0"}
+
+              sm:group-hover:opacity-100
+            `}
             >
-              <img
-                src={s.img}
-                alt={s.label}
-                className="absolute w-16 sm:w-24 md:w-35 h-16 sm:h-24 md:h-35 object-contain transition-opacity duration-300 group-hover:opacity-0"
-              />
+              {s.label}
+            </p>
 
-              <p className="absolute opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-[#0b1587] text-lg sm:text-2xl md:text-3xl font-bold text-center px-2">
-                {s.label}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
+          </motion.div>
+        );
+      })}
+    </div>
+
+  </div>
+</section>
 {/* EDUCATION */}
-<section className="w-full min-h-screen flex items-center justify-center bg-[#1b2f77] text-white py-20 md:py-24 px-4 md:px-8 overflow-hidden">
+<section className="w-full min-h-screen flex items-center justify-center bg-[#1b2f77] text-white py-24 md:py-32 px-4 md:px-8 overflow-hidden">
 
   <div className="max-w-6xl mx-auto w-full flex flex-col items-center relative">
 
@@ -636,63 +691,54 @@ export default function Home() {
     </section>
 
     {/* PROJECT 2 */}
-    <section className="w-full min-h-screen flex items-center justify-center px-4 md:px-8 py-20 md:py-24 bg-[#1b2f77] text-white overflow-hidden">
+<section className="w-full min-h-screen flex items-center justify-center px-4 md:px-8 py-20 md:py-24 bg-[#1b2f77] text-white overflow-hidden">
+  <div className="max-w-7xl mx-auto w-full flex flex-col items-center">
 
-      <div className="max-w-7xl mx-auto w-full flex flex-col items-center">
+    <motion.h2
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="show"
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+      className="text-4xl sm:text-5xl md:text-7xl font-bold text-center mb-12 md:mb-16 leading-tight"
+    >
+      Full SolidWorks 1989 Batmobile
+    </motion.h2>
 
-        <motion.h2
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="show"
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-4xl sm:text-5xl md:text-7xl font-bold text-center mb-12 md:mb-16 leading-tight"
-        >
-          Full SolidWorks 1989 Batmobile
-        </motion.h2>
-
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="show"
-          transition={{ duration: 0.8, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center"
-        >
-
-          <div>
-            <span className="text-blue-200 text-base md:text-lg block mb-6">
-              Jan. 2026 - March 2026
-            </span>
-
-            <p className="text-blue-100 text-base md:text-lg leading-relaxed">
-              I led a team of six to create a complete CAD model of the 1989 Batmobile using SolidWorks.
-              The model includes everything from the car's shell, frame, and cockpit to a V8 engine jet
-              engine, retractable wings, and machine guns. These features used a vast array of SolidWorks
-              features, rapidly boosting proficiency. Every part was designed and modeled with precision
-              to ensure everything would come together with the perfect fit. The parts were then all
-              mated together in an assembly and brought to life through renderings in Blender.
-            </p>
-          </div>
-
-          <div className="flex justify-center w-full">
-            <Carousel
-              items={[
-                {
-                  type: "image",
-                  src: "/batmobileFront.png",
-                  hoverSrc: "/batmobileBack.png",
-                  scale: 1.3
-                },
-                { type: "video", src: "https://o58l1inhjbmrpwen.public.blob.vercel-storage.com/batmobileVideo.mp4" },
-              ]}
-            />
-          </div>
-
-        </motion.div>
+    <motion.div
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="show"
+      transition={{ duration: 0.8, delay: 0.2 }}
+      viewport={{ once: true }}
+      className="w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-[1fr_1.3fr] gap-10 md:gap-20 items-center"
+    >
+      <div>
+        <span className="text-blue-200 text-base md:text-lg block mb-6">
+          Jan. 2026 - March 2026
+        </span>
+        <p className="text-blue-100 text-base md:text-lg leading-relaxed">
+          I led a team of six to create a complete CAD model of the 1989 Batmobile using SolidWorks.
+          The model includes everything from the car's shell, frame, and cockpit to a V8 engine jet
+          engine, retractable wings, and machine guns. These features used a vast array of SolidWorks
+          features, rapidly boosting proficiency. Every part was designed and modeled with precision
+          to ensure everything would come together with the perfect fit. The parts were then all
+          mated together in an assembly and brought to life through renderings in Blender.
+        </p>
       </div>
-    </section>
 
+      <div className="flex justify-center w-full">
+        <Carousel
+          items={[
+            { type: "image", src: "/batmobileFront.png", hoverSrc: "/batmobileBack.png", scale: 1.3 },
+            { type: "video", src: "https://o58l1inhjbmrpwen.public.blob.vercel-storage.com/batmobileVideo.mp4" },
+          ]}
+        />
+      </div>
+
+    </motion.div>
+  </div>
+</section>
     {/* PROJECT 3 */}
     <section className="w-full min-h-screen flex items-center justify-center px-4 md:px-8 py-20 md:py-24 bg-white text-black overflow-hidden">
 
@@ -725,20 +771,20 @@ export default function Home() {
 
             <p className="text-black text-base md:text-lg leading-relaxed">
               This project was inspired by{" "}
-              <span
-                className="font-bold text-blue-600 cursor-pointer"
-                onMouseEnter={() => {
-                  setHovered(true);
-                  setHoveredImage("/toothless.png");
-                }}
-                onMouseLeave={() => {
-                  setHovered(false);
-                  setHoveredImage("");
-                }}
-                onMouseMove={(e) => setCursorPos({ x: e.clientX, y: e.clientY })}
-              >
-                Toothless
-              </span>{" "}
+             <span
+              className="font-bold text-[#2f53e5]"
+              onMouseEnter={() => {
+                setHovered(true);
+                setHoveredImage("/toothless.png");
+              }}
+              onMouseLeave={() => {
+                setHovered(false);
+                setHoveredImage("");
+              }}
+              onMouseMove={(e) => setCursorPos({ x: e.clientX, y: e.clientY })}
+            >
+              Toothless
+            </span>{" "}
               from <span className="italic">How to Train Your Dragon</span>. When I was 15, I decided
               a robot dragon would have to suffice. I created this Toothless head with the ability
               to shake its ears, move its LED eyes, and "breathe fire" with the help of an LED, all
@@ -766,16 +812,35 @@ export default function Home() {
           </div>
 
           <div className="flex justify-center">
-            <div className="relative w-full max-w-[650px] aspect-[4/3] group overflow-hidden">
-              <img
-                src="/dragonHeadFront.png"
-                className="w-full h-full object-contain transition-opacity duration-300 group-hover:opacity-0"
-              />
-              <img
-                src="/dragonHeadTop.png"
-                className="absolute top-0 left-0 w-full h-full object-contain opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-              />
-            </div>
+          <div
+          className="relative w-full max-w-[650px] aspect-[4/3] overflow-hidden group"
+          onTouchStart={(e) => {
+          e.stopPropagation();
+          setToggledImage(prev => prev === "toothless" ? null : "toothless");
+        }}
+        >
+
+          <Image
+            src="/dragonHeadFront.png"
+            alt="Dragon Head Front"
+            fill
+            className={`object-contain transition-opacity duration-300 pointer-events-none select-none
+              ${toggledImage === "toothless" ? "opacity-0" : "opacity-100"}
+              group-hover:opacity-0
+            `}
+          />
+
+          <Image
+            src="/dragonHeadTop.png"
+            alt="Dragon Head Top"
+            fill
+            className={`absolute top-0 left-0 object-contain transition-opacity duration-300 pointer-events-none select-none
+              ${toggledImage === "toothless" ? "opacity-100" : "opacity-0"}
+              group-hover:opacity-100
+            `}
+          />
+
+        </div>
           </div>
 
         </motion.div>
@@ -813,7 +878,22 @@ export default function Home() {
             </span>
 
             <p className="text-blue-100 text-base md:text-lg leading-relaxed">
-              As a Grade 8 project, I designed a dog cookie dispenser to test whether my Great Dane, Finnegan, could distinguish between two similar sounds. Built around a random timer, the dispenser would play the tones throughout the day. One sound resulted in absolutely nothing; however, the other would play a few seconds before a cookie was dispensed. I was curious whether my dog would learn to ignore one sound and get excited about the other. Unfortunately, the experiment took a turn and resulted in a sick-of-cookies dog who decided he didn't like cheap wheat-flour cookies anymore, so I never reached a conclusion about his sound-association abilities.
+              As a Grade 8 project, I designed a dog cookie dispenser to test whether my Great Dane,{" "} 
+             <span
+            className="font-bold text-[#2f53e5]"
+            onMouseEnter={() => {
+              setHovered(true);
+              setHoveredImage("/finnegan.png");
+            }}
+            onMouseLeave={() => {
+              setHovered(false);
+              setHoveredImage("");
+            }}
+            onMouseMove={(e) => setCursorPos({ x: e.clientX, y: e.clientY })}
+          >
+            Finnegan
+          </span>
+              , could distinguish between two similar sounds. Built around a random timer, the dispenser would play the tones throughout the day. One sound resulted in absolutely nothing; however, the other would play a few seconds before a cookie was dispensed. I was curious whether my dog would learn to ignore one sound and get excited about the other. Unfortunately, the experiment took a turn and resulted in a sick-of-cookies dog who decided he didn't like cheap wheat-flour cookies anymore, so I never reached a conclusion about his sound-association abilities.
             </p>
 
             <p className="text-blue-100 text-base md:text-lg mt-6 leading-relaxed">
@@ -828,16 +908,35 @@ export default function Home() {
           </div>
 
           <div className="flex justify-center w-full">
-            <div className="relative w-full max-w-[650px] aspect-[4/3] group overflow-hidden">
-              <img
-                src="/cookieDispenserFront.png"
-                className="w-full h-full object-contain transition-opacity duration-300 group-hover:opacity-0"
-              />
-              <img
-                src="/cookieDispenserTop.png"
-                className="absolute top-0 left-0 w-full h-full object-contain opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-              />
-            </div>
+          <div
+          className="relative w-full max-w-[650px] aspect-[4/3] group overflow-hidden"
+          onTouchStart={(e) => {
+          e.stopPropagation();
+          setToggledImage(prev => prev === "cookie" ? null : "cookie");
+        }}
+        >
+
+          <Image
+            src="/cookieDispenserFront.png"
+            alt="Cookie Dispenser Front"
+            fill
+            className={`object-contain transition-opacity duration-300 pointer-events-none select-none
+              ${toggledImage === "cookie" ? "opacity-0" : "opacity-100"}
+              sm:group-hover:opacity-0
+            `}
+          />
+
+          <Image
+            src="/cookieDispenserTop.png"
+            alt="Cookie Dispenser Top"
+            fill
+            className={`absolute top-0 left-0 object-contain transition-opacity duration-300 pointer-events-none select-none
+              ${toggledImage === "cookie" ? "opacity-100" : "opacity-0"}
+              sm:group-hover:opacity-100
+            `}
+          />
+
+        </div>
           </div>
 
         </motion.div>
@@ -847,7 +946,7 @@ export default function Home() {
   </div>
 )}
 {/* CONTACT SECTION */}
-<div className="w-full flex justify-center bg-white min-h-screen pt-20 md:pt-32 px-4">
+<div className="w-full flex justify-center bg-white pb-20 md:min-h-screen pt-20 md:pt-32 px-4">
   <div id="contact" className="w-full max-w-5xl bg-white flex flex-col items-center">
 
     <motion.h2
