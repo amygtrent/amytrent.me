@@ -236,26 +236,28 @@ export default function Home() {
           <div className="relative z-10 flex flex-col items-center -translate-y-15 md:scale-[1.3] scale-100 px-4">
             <div className="relative h-[180px] md:h-[220px] flex items-center justify-center mb-10">
               <h1
-                className="text-4xl sm:text-6xl md:text-8xl font-black text-center"
-                style={{
-                  fontFamily: "Bebas Neue, sans-serif",
-                  color: "#2f53e5",
-                }}
-              >
-                Hey, I’m Amy Trent.
-              </h1>
+  className="text-4xl sm:text-6xl md:text-8xl font-black text-center leading-[1.05]"
+  style={{
+    fontFamily: "Bebas Neue, sans-serif",
+    color: "#2f53e5",
+  }}
+>
+  Hey, I’m{" "}
+  <span className="block sm:inline">Amy Trent.</span>
+</h1>
 
-              <h1
-                className="absolute text-4xl sm:text-6xl md:text-8xl font-black text-center"
-                style={{
-                  fontFamily: "Bebas Neue, sans-serif",
-                  color: "transparent",
-                  WebkitTextStroke: "4px #0b1587",
-                  transform: "translate(-4px, -4px)",
-                }}
-              >
-                Hey, I’m Amy Trent.
-              </h1>
+<h1
+  className="absolute text-4xl sm:text-6xl md:text-8xl font-black text-center leading-[1.05]"
+  style={{
+    fontFamily: "Bebas Neue, sans-serif",
+    color: "transparent",
+    WebkitTextStroke: "clamp(1px, 0.4vw, 4px) #0b1587",
+    transform: "translate(-4px, -4px)",
+  }}
+>
+  Hey, I’m{" "}
+  <span className="block sm:inline">Amy Trent.</span>
+</h1>
             </div>
 
             {/* PORTRAIT */}
