@@ -1,1 +1,8 @@
-*.mp4 filter=lfs diff=lfs merge=lfs -text
+import { put } from "@vercel/blob";
+import fs from "fs";
+
+async function uploadVideo() {
+  console.log("Script started");
+}
+
+uploadVideo();

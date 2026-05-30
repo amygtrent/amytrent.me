@@ -76,10 +76,12 @@ function Carousel({ items }: { items: MediaItem[] }) {
         </div>
       ) : (
         <video
-          src={currentItem.src}
-          controls
-          className="w-full h-full object-contain"
-        />
+  src={currentItem.src}
+  controls
+  preload="metadata"
+  className="w-full h-full object-contain bg-transparent"
+  playsInline
+/>
       )}
 
       <button
@@ -525,7 +527,7 @@ export default function Home() {
            <p className="text-white mb-1">
   •{" "}
   <a
-    href="https://www2.gov.bc.ca/gov/content/education-training/k-12/support/scholarships/bc-excellence-scholarships"
+    href="https://www2.gov.bc.ca/gov/content/education-training/k-12/support/scholarships/provincial-scholarships/bc-achievement-scholarships"
     target="_blank"
     rel="noopener noreferrer"
     className="text-blue-300 underline hover:text-blue-200"
@@ -622,7 +624,7 @@ export default function Home() {
                 { type: "image", src: "/treePlanterHandles.jpeg", scale: 1 },
                 { type: "image", src: "/treePlanterClaw.jpeg", scale: 1 },
                 { type: "image", src: "/treePlanterApp.jpeg", scale: 1 },
-                { type: "video", src: "/treePlanterVideo.mp4" },
+               { type: "video", src: "https://o58l1inhjbmrpwen.public.blob.vercel-storage.com/treePlanterVideo.mp4" },
               ]}
             />
           </div>
@@ -680,7 +682,7 @@ export default function Home() {
                   hoverSrc: "/batmobileBack.png",
                   scale: 1.3
                 },
-                { type: "video", src: "batmobileVideo.mp4" },
+                { type: "video", src: "https://o58l1inhjbmrpwen.public.blob.vercel-storage.com/batmobileVideo.mp4" },
               ]}
             />
           </div>
