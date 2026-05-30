@@ -286,10 +286,10 @@ const [toggledImage, setToggledImage] =
             </div>
 
             {/* PORTRAIT */}
-            <div className="relative flex items-center justify-center -mt-1 sm:-mt-10">
+              <div className="relative flex items-center justify-center -mt-1 sm:mt-4 md:-mt-10">
               <div className="absolute w-[200px] h-[200px] md:w-[260px] md:h-[260px] rounded-full bg-gradient-to-br from-[#0b1587] to-[#2f53e5] blur-xl opacity-40"></div>
 
-              <div className="relative w-[220px] h-[220px] md:w-[240px] md:h-[240px] rounded-full p-[6px] bg-gradient-to-br from-[#2f53e5] via-[#0b1587] to-[#2f53e5]">
+              <div className="relative w-[220px] h-[220px] sm:w-[260px] sm:h-[260px] md:w-[240px] md:h-[240px] rounded-full p-[6px] bg-gradient-to-br from-[#2f53e5] via-[#0b1587] to-[#2f53e5]">
                 <div className="relative w-full h-full rounded-full overflow-hidden">
   
              <button
