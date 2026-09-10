@@ -108,7 +108,7 @@ const [toggledImage, setToggledImage] =
   useState<"toothless" | "cookie" | "batmobile" | null>(null);
   const [activeSkill, setActiveSkill] = useState<string | null>(null);
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
-  const [activeTab, setActiveTab] = useState<"about" | "projects">("about");
+  const [activeTab, setActiveTab] = useState<"about" | "projects" | "blog">("about");
   const [hovered, setHovered] = useState(false);
   const [hoveredImage, setHoveredImage] = useState("");
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
@@ -129,6 +129,14 @@ const [toggledImage, setToggledImage] =
   ];
 
   const [wordIndex, setWordIndex] = useState(0);
+
+  const blogPosts = [
+  { title: "I designed the brains behind an AI litter drone...", date: "9/9/26", body: "..." },
+  { title: "We invented a product that would please the Lorax...", date: "4/5/26", body: "..." },
+  { title: "Modeling Batman's car...", date: "3/26/26", body: "..." },
+  { title: "I fulfilled my childhood dream of a pet dragon...", date: "1/28/26", body: "..." },
+  { title: "A design that my dog was (temporarily) a huge fan of...", date: "4/13/26", body: "..." },
+];
 
   const skills = [
     { img: "/solidworksIcon.jpeg", label: "SolidWorks" },
@@ -319,7 +327,7 @@ const [toggledImage, setToggledImage] =
 <div className="relative w-full left-1/2 -translate-x-1/2 flex bg-white border-b-2 border-gray-300">
 
   <button
-    className={`w-1/2 text-center py-4 text-lg sm:text-xl md:text-2xl transition-all duration-200 ${
+    className={`w-1/3 text-center py-4 text-lg sm:text-xl md:text-2xl transition-all duration-200 ${
       activeTab === "about"
         ? "border-b-[5px] border-[#3b4cca] font-bold text-[#3b4cca]"
         : "text-gray-700 hover:text-[#3b4cca]"
@@ -330,7 +338,7 @@ const [toggledImage, setToggledImage] =
   </button>
 
   <button
-    className={`w-1/2 text-center py-4 text-lg sm:text-xl md:text-2xl transition-all duration-200 ${
+    className={`w-1/3 text-center py-4 text-lg sm:text-xl md:text-2xl transition-all duration-200 ${
       activeTab === "projects"
         ? "border-b-[5px] border-[#3b4cca] font-bold text-[#3b4cca]"
         : "text-gray-700 hover:text-[#3b4cca]"
@@ -338,6 +346,17 @@ const [toggledImage, setToggledImage] =
     onClick={() => setActiveTab("projects")}
   >
     Projects
+  </button>
+
+ <button
+    className={`w-1/3 text-center py-4 text-lg sm:text-xl md:text-2xl transition-all duration-200 ${
+      activeTab === "blog"
+        ? "border-b-[5px] border-[#3b4cca] font-bold text-[#3b4cca]"
+        : "text-gray-700 hover:text-[#3b4cca]"
+    }`}
+    onClick={() => setActiveTab("blog")}
+  >
+    Blog
   </button>
 
 </div>
@@ -538,7 +557,7 @@ const [toggledImage, setToggledImage] =
             </p>
 
             <p className="text-white mb-1">
-              • 4.0 / 4.33 GPA
+              • 3.9 / 4.33 GPA
             </p>
 
             <p className="text-white">
@@ -943,6 +962,49 @@ const [toggledImage, setToggledImage] =
       </div>
     </section>
 
+  </div>
+)}
+
+{activeTab === "blog" && (
+  <div className="w-full bg-white min-h-screen px-4 md:px-8 py-24">
+    <div className="max-w-4xl mx-auto">
+      <h2 className="text-4xl sm:text-6xl md:text-7xl font-bold text-center mb-10 text-[#1b2f77]">
+        Articles
+      </h2>
+      {activeTab === "blog" && (
+  <div className="w-full bg-white min-h-screen px-4 md:px-8 py-20 md:py-24">
+    <div className="max-w-5xl mx-auto">
+
+      <div className="flex flex-col gap-8 md:gap-10">
+        {blogPosts.map((post, i) => (
+          <motion.div
+            key={post.title}
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            transition={{ duration: 0.6, delay: i * 0.1 }}
+            viewport={{ once: true, amount: 0.2 }}
+            className="w-full rounded-[2.5rem] bg-[#1b2f77] text-white px-6 sm:px-10 md:px-14 py-10 md:py-14"
+          >
+            <span className="text-blue-200 text-sm sm:text-base block mb-3">
+              {post.date}
+            </span>
+
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
+              {post.title}
+            </h3>
+
+            <p className="text-blue-100 text-base sm:text-lg leading-relaxed w-full">
+              {post.body}
+            </p>
+          </motion.div>
+        ))}
+      </div>
+
+    </div>
+  </div>
+)}
+    </div>
   </div>
 )}
 {/* CONTACT SECTION */}
