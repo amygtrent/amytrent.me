@@ -137,6 +137,7 @@ const [toggledImage, setToggledImage] =
   const [hoveredPost, setHoveredPost] = useState<string | null>(null);
   const tabSectionRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const isFirstRender = useRef(true);
 
   const skills = [
     { img: "/solidworksIcon.jpeg", label: "SolidWorks" },
@@ -193,6 +194,10 @@ const [toggledImage, setToggledImage] =
 
 
 useEffect(() => {
+  if (isFirstRender.current) {
+    isFirstRender.current = false;
+    return;
+  }
   if (contentRef.current) {
     const navHeight = tabSectionRef.current?.offsetHeight ?? 0;
     const top =
