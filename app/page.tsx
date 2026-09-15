@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useState, Suspense } from "react";
+import { useState, Suspense, useRef } from "react";
 import { Inconsolata } from "next/font/google";
 import { Fredoka } from "next/font/google";
 import { useEffect } from "react";
@@ -135,6 +135,8 @@ const [toggledImage, setToggledImage] =
 
   const [wordIndex, setWordIndex] = useState(0);
   const [hoveredPost, setHoveredPost] = useState<string | null>(null);
+  const tabSectionRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   const skills = [
     { img: "/solidworksIcon.jpeg", label: "SolidWorks" },
@@ -189,6 +191,15 @@ const [toggledImage, setToggledImage] =
     return () => document.removeEventListener("touchstart", handleTouch);
   }, [toggledImage]);
 
+
+useEffect(() => {
+  if (contentRef.current) {
+    const navHeight = tabSectionRef.current?.offsetHeight ?? 0;
+    const top =
+      contentRef.current.getBoundingClientRect().top + window.scrollY - navHeight;
+    window.scrollTo({ top, behavior: "instant" });
+  }
+}, [activeTab]);
   return (
     <>
       <div className="min-w-0">
@@ -321,8 +332,8 @@ const [toggledImage, setToggledImage] =
           <div className="absolute bottom-0 left-0 w-full h-[4px] bg-gradient-to-r from-[#2f53e5] to-[#0b1587]" />
         </div>
 
-       {/* TAB SWITCHER */}
-<div className="sticky top-0 z-50 w-full flex bg-white border-b-2 border-gray-300">
+{/* TAB SWITCHER */}
+<div ref={tabSectionRef} className="sticky top-0 z-50 w-full flex bg-white border-b-2 border-gray-300">
 
   <button
     className={`w-1/3 text-center py-4 text-lg sm:text-xl md:text-2xl transition-all duration-200 ${
@@ -359,6 +370,7 @@ const [toggledImage, setToggledImage] =
 
 </div>
 {/* TAB CONTENT */}
+<div ref={contentRef}>
 {activeTab === "about" && (
   <div className="w-full bg-white min-h-screen">
 
@@ -1072,6 +1084,7 @@ const [toggledImage, setToggledImage] =
     </div>
   </div>
 )}
+</div>
 {/* CONTACT SECTION */}
 <div className="w-full flex justify-center bg-white pb-20 md:min-h-screen pt-20 md:pt-32 px-4">
   <div id="contact" className="w-full max-w-5xl bg-white flex flex-col items-center">
