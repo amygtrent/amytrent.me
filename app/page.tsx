@@ -5,6 +5,9 @@ import { Inconsolata } from "next/font/google";
 import { Fredoka } from "next/font/google";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
+import { blogPosts } from "@/lib/blogPosts";
+import { useSearchParams } from "next/navigation";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 60 },
@@ -108,7 +111,9 @@ const [toggledImage, setToggledImage] =
   useState<"toothless" | "cookie" | "batmobile" | null>(null);
   const [activeSkill, setActiveSkill] = useState<string | null>(null);
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
-  const [activeTab, setActiveTab] = useState<"about" | "projects" | "blog">("about");
+  const searchParams = useSearchParams();
+  const initialTab = searchParams.get("tab") === "blog" ? "blog" : "about";
+  const [activeTab, setActiveTab] = useState<"about" | "projects" | "blog">(initialTab);
   const [hovered, setHovered] = useState(false);
   const [hoveredImage, setHoveredImage] = useState("");
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
@@ -129,14 +134,7 @@ const [toggledImage, setToggledImage] =
   ];
 
   const [wordIndex, setWordIndex] = useState(0);
-
-  const blogPosts = [
-  { title: "I designed the brains behind an AI litter drone...", date: "9/9/26", body: "..." },
-  { title: "We invented a product that would please the Lorax...", date: "4/5/26", body: "..." },
-  { title: "Modeling Batman's car...", date: "3/26/26", body: "..." },
-  { title: "I fulfilled my childhood dream of a pet dragon...", date: "1/28/26", body: "..." },
-  { title: "A design that my dog was (temporarily) a huge fan of...", date: "4/13/26", body: "..." },
-];
+  const [hoveredPost, setHoveredPost] = useState<string | null>(null);
 
   const skills = [
     { img: "/solidworksIcon.jpeg", label: "SolidWorks" },
@@ -193,7 +191,7 @@ const [toggledImage, setToggledImage] =
 
   return (
     <>
-      <div className="overflow-x-hidden min-w-0">
+      <div className="min-w-0">
 
         {/* HEADER */}
         <div
@@ -324,7 +322,7 @@ const [toggledImage, setToggledImage] =
         </div>
 
        {/* TAB SWITCHER */}
-<div className="relative w-full left-1/2 -translate-x-1/2 flex bg-white border-b-2 border-gray-300">
+<div className="sticky top-0 z-50 w-full flex bg-white border-b-2 border-gray-300">
 
   <button
     className={`w-1/3 text-center py-4 text-lg sm:text-xl md:text-2xl transition-all duration-200 ${
@@ -643,6 +641,49 @@ const [toggledImage, setToggledImage] =
 {activeTab === "projects" && (
   <div className="w-full bg-white">
 
+ {/* PROJECT 0 */}
+<section className="w-full min-h-screen flex items-center justify-center px-4 md:px-8 py-20 md:py-24 bg-[#1b2f77] text-white overflow-hidden">
+  <div className="max-w-7xl mx-auto w-full flex flex-col items-center">
+
+    <motion.h2
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="show"
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+      className="text-4xl sm:text-5xl md:text-7xl font-bold text-center mb-12 md:mb-16 leading-tight"
+    >
+      AI Litter Collection Drone
+    </motion.h2>
+
+    <motion.div
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="show"
+      transition={{ duration: 0.8, delay: 0.2 }}
+      viewport={{ once: true }}
+      className="w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-[1fr_1.3fr] gap-10 md:gap-20 items-center"
+    >
+      <div>
+        <span className="text-blue-200 text-base md:text-lg block mb-6">
+          July 2026 - Current
+        </span>
+        <p className="text-blue-100 text-base md:text-lg leading-relaxed">
+          I am currently designing a drone that uses a Raspberry Pi to detect litter on the ground, fly to it, pick it up, and dispose of it at a garbage or recycling can according to its classification of litter. This project is primarily utilizing 3D printing, Raspberry Pi 5 and accessories, machine learning, and a flight controller.
+        </p>
+      </div>
+
+      <div className="flex justify-center w-full">
+  <div className="relative w-full max-w-[500px] aspect-[4/3] flex items-center justify-center border-2 border-dashed border-white/40 rounded-2xl">
+    <span className="text-white/60 text-xl sm:text-2xl font-semibold">
+      In Progress
+    </span>
+  </div>
+</div>
+
+    </motion.div>
+  </div>
+</section>
     {/* PROJECT 1 */}
     <section className="w-full min-h-screen flex items-center justify-center px-4 md:px-8 py-20 md:py-24 bg-white text-black overflow-hidden">
 
@@ -966,44 +1007,68 @@ const [toggledImage, setToggledImage] =
 )}
 
 {activeTab === "blog" && (
-  <div className="w-full bg-white min-h-screen px-4 md:px-8 py-24">
-    <div className="max-w-4xl mx-auto">
-      <h2 className="text-4xl sm:text-6xl md:text-7xl font-bold text-center mb-10 text-[#1b2f77]">
+  <div className="w-full bg-white px-4 md:px-8 py-20 md:py-24">
+    <div className="max-w-7xl mx-auto">
+
+      <motion.h2
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="show"
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="text-5xl sm:text-7xl md:text-9xl font-bold text-center mb-16 text-[#1b2f77]"
+      >
         Articles
-      </h2>
-      {activeTab === "blog" && (
-  <div className="w-full bg-white min-h-screen px-4 md:px-8 py-20 md:py-24">
-    <div className="max-w-5xl mx-auto">
+      </motion.h2>
 
-      <div className="flex flex-col gap-8 md:gap-10">
-        {blogPosts.map((post, i) => (
-          <motion.div
-            key={post.title}
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="show"
-            transition={{ duration: 0.6, delay: i * 0.1 }}
-            viewport={{ once: true, amount: 0.2 }}
-            className="w-full rounded-[2.5rem] bg-[#1b2f77] text-white px-6 sm:px-10 md:px-14 py-10 md:py-14"
-          >
-            <span className="text-blue-200 text-sm sm:text-base block mb-3">
-              {post.date}
-            </span>
+<div className="flex flex-col gap-6 md:gap-8">
+  {blogPosts.map((post, i) => (
+    <Link href={`/blog/${post.slug}`} key={post.slug}>
+      <motion.div
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="show"
+        transition={{ duration: 0.6, delay: i * 0.1 }}
+        viewport={{ once: true, amount: 0.2 }}
+        onMouseEnter={() => setHoveredPost(post.slug)}
+        onMouseLeave={() => setHoveredPost(null)}
+        className="w-full rounded-[2.5rem] bg-[#1b2f77] text-white flex items-stretch overflow-hidden hover:scale-[1.01] transition-transform duration-300 cursor-pointer"
+      >
+        {/* PHOTO */}
+        <div className="relative w-32 sm:w-44 md:w-56 flex-shrink-0 overflow-hidden">
+         <img
+  src={post.image}
+  alt={post.title}
+  className="absolute inset-0 w-full h-full object-cover transition-all duration-500"
+  style={{
+    filter:
+      hoveredPost === post.slug
+        ? `grayscale(0%) brightness(${post.imageBrightness ?? 1})`
+        : `grayscale(100%) brightness(${post.imageBrightness ?? 1})`,
+  }}
+/>
+        </div>
 
-            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
-              {post.title}
-            </h3>
+     {/* TEXT */}
+<div className="flex-1 flex flex-col items-center justify-center text-center gap-2 px-5 py-6 sm:flex-row sm:items-center sm:justify-between sm:text-left sm:gap-0 sm:px-8 sm:py-8">
+  <h3 className="text-lg sm:text-xl md:text-2xl font-bold leading-snug">
+    {post.title}
+  </h3>
 
-            <p className="text-blue-100 text-base sm:text-lg leading-relaxed w-full">
-              {post.body}
-            </p>
-          </motion.div>
-        ))}
-      </div>
-
-    </div>
+  <div className="flex flex-col items-center sm:items-end shrink-0 sm:ml-6">
+    <span className="text-blue-200 text-xs sm:text-sm">
+      {post.time}
+    </span>
+    <span className="text-blue-200 text-xs sm:text-sm">
+      {post.date}
+    </span>
   </div>
-)}
+</div>
+      </motion.div>
+    </Link>
+  ))}
+</div>
+
     </div>
   </div>
 )}
