@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { Inconsolata } from "next/font/google";
 import { Fredoka } from "next/font/google";
 import { useEffect } from "react";
@@ -105,7 +105,7 @@ function Carousel({ items }: { items: MediaItem[] }) {
   );
 }
 
-export default function Home() {
+function HomeContent() {
   const [photoToggled, setPhotoToggled] = useState(false);
 const [toggledImage, setToggledImage] =
   useState<"toothless" | "cookie" | "batmobile" | null>(null);
@@ -1161,4 +1161,11 @@ const [toggledImage, setToggledImage] =
 </div>
 </>
 );
+}
+export default function Home() {
+  return (
+    <Suspense fallback={null}>
+      <HomeContent />
+    </Suspense>
+  );
 }
