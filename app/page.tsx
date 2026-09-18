@@ -142,8 +142,10 @@ const [toggledImage, setToggledImage] =
   const skills = [
     { img: "/solidworksIcon.jpeg", label: "SolidWorks" },
     { img: "/javaIcon.jpeg", label: "Java" },
-    { img: "/cIcon.jpeg", label: "C Programming" },
+    { img: "/cIcon.jpeg", label: "C" },
     { img: "/arduinoIcon.jpeg", label: "Arduino" },
+    { img: "/raspberryPiIcon.png", label: "Raspberry Pi", scale: 1.7 },
+    { img: "/yoloV8Icon.svg", label: "YOLOv8", scale: 0.9 },
   ];
 
   useEffect(() => {
@@ -455,7 +457,7 @@ useEffect(() => {
     </section>
 
    {/* SKILLS */}
-<section className="w-full bg-white text-black px-4 md:px-8 pt-24 md:pt-42 pb-20 md:min-h-screen md:pb-32">
+<section className="w-full bg-white text-black px-4 md:px-8 pt-16 md:pt-30 pb-20 md:min-h-screen md:pb-32">
   <div className="max-w-6xl mx-auto text-center">
 
     <motion.h2
@@ -469,7 +471,7 @@ useEffect(() => {
       Skills
     </motion.h2>
 
-<div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-24 justify-items-center w-fit mx-auto">
+<div className="grid grid-cols-3 lg:grid-cols-3 gap-8 lg:gap-10 justify-items-center w-fit mx-auto">
       {skills.map((s) => {
         const isActive = activeSkill === s.label;
 
@@ -485,13 +487,14 @@ useEffect(() => {
               e.stopPropagation();
               setActiveSkill(prev => (prev === s.label ? null : s.label));
             }}
-            className="w-40 h-40 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-full border-2 border-[#0b1587] flex relative items-center justify-center overflow-hidden cursor-pointer group"
+            className="w-[calc((100vw-6rem)/3)] max-w-52 aspect-square rounded-full border-2 border-[#0b1587] flex relative items-center justify-center overflow-hidden cursor-pointer group"
           >
 
             {/* ICON */}
             <img
               src={s.img}
               alt={s.label}
+              style={{ transform: `scale(${s.scale ?? 1})` }}
               className={`
               absolute w-16 sm:w-24 md:w-35 h-16 sm:h-24 md:h-35 object-contain transition-opacity duration-300
 
@@ -686,7 +689,7 @@ useEffect(() => {
           July 2026 - Current
         </span>
         <p className="text-blue-100 text-base md:text-lg leading-relaxed">
-          I am currently designing a drone that uses a Raspberry Pi to detect litter on the ground, fly to it, pick it up, and dispose of it at a garbage or recycling can according to its classification of litter. This project is primarily utilizing 3D printing, Raspberry Pi 5 and accessories, machine learning, and a flight controller.
+          I am currently designing a drone that uses a Raspberry Pi to detect litter on the ground, fly to it, pick it up, and dispose of it at a garbage or recycling can according to its classification. This project is primarily utilizing 3D printing, Raspberry Pi 5 and accessories, machine learning, and a flight controller.
         </p>
       </div>
 
@@ -739,7 +742,7 @@ useEffect(() => {
               pedal which opens a claw, pushing dirt aside in a similar way to a shovel. This creates
               the perfect hole in the dirt for a sapling to be planted. The sapling is then dropped
               down the chute of the device and into the hole, passing an IR break beam sensor which is
-              programmed to show the amount of planted trees in a session on an LED screen. These
+              programmed to display the amount of planted trees in a session on an LED screen. These
               electronics are powered with the use of a Raspberry Pi, connecting to an app to show
               the total amount and target number of planted trees. A majority of this prototype was
               3D printed and modeled using SolidWorks.
@@ -871,7 +874,7 @@ useEffect(() => {
               the side, Toothless would become excited, moving his ears up and down a few times and
               looking towards whichever side the person was on. However, if he sensed that someone
               was directly in front of him, he would become scared: his ears would quiver non-stop
-              and he would shoot plasma fire.
+              and he would shoot "plasma fire".
             </p>
 
             <p className="text-black text-base md:text-lg mt-6 leading-relaxed">
