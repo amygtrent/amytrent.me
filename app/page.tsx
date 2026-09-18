@@ -796,7 +796,7 @@ useEffect(() => {
         </span>
         <p className="text-blue-100 text-base md:text-lg leading-relaxed">
           I led a team of six to create a complete CAD model of the 1989 Batmobile using SolidWorks.
-          The model includes everything from the car's shell, frame, and cockpit to a V8 engine jet
+          The model includes everything from the car's shell, frame, and cockpit to a V8 
           engine, retractable wings, and machine guns. These features used a vast array of SolidWorks
           features, rapidly boosting proficiency. Every part was designed and modeled with precision
           to ensure everything would come together with the perfect fit. The parts were then all
@@ -862,7 +862,8 @@ useEffect(() => {
             >
               Toothless
             </span>{" "}
-              from <span className="italic">How to Train Your Dragon</span>. When I was 15, I decided
+              from <span className="italic">How to Train Your Dragon</span>. Growing up, I always dreamed of having a pet dragon. 
+              When I was 15, I decided
               a robot dragon would have to suffice. I created this Toothless head with the ability
               to shake its ears, move its LED eyes, and "breathe fire" with the help of an LED, all
               in accordance to where someone was positioned in front of it. Two proximity sensors
