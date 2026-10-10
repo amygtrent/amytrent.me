@@ -138,6 +138,8 @@ const [toggledImage, setToggledImage] =
   const tabSectionRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const isFirstRender = useRef(true);
+  const wordRef = useRef<HTMLParagraphElement>(null);
+  const [wordInView, setWordInView] = useState(false);
 
   const skills = [
     { img: "/solidworksIcon.jpeg", label: "SolidWorks" },
@@ -146,15 +148,43 @@ const [toggledImage, setToggledImage] =
     { img: "/arduinoIcon.jpeg", label: "Arduino" },
     { img: "/raspberryPiIcon.png", label: "Raspberry Pi", scale: 1.7 },
     { img: "/yoloV8Icon.svg", label: "YOLOv8", scale: 0.9 },
+    { img: "/3DprintingIcon.jpg", label: "3D Printing"},
+    { img: "/rIcon.png", label: "R (RStudio)"},
+    { img: "/matlabIcon.png", label: "MATLAB"},
+    { img: "/nxIcon.png", label: "Siemens NX", scale: 1.15},
+    { img: "/nextjsIcon.png", label: "Next.js"},
+    { img: "/reactIcon.jpeg", label: "React"},
+    { img: "/excelIcon.jpeg", label: "Excel"},
+    { img: "/typeScriptIcon.png", label: "TypeScript"},
+    { img: "/colabIcon.png", label: "Google Colab", scale: 1.4},
+    { img: "/bambu.png", label: "Bambu Studio", scale: 1.5},
+
   ];
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setWordIndex((prev) => (prev + 1) % words.length);
-    }, 2000);
+  if (!wordInView) return;
 
-    return () => clearInterval(interval);
-  }, []);
+  const interval = setInterval(() => {
+    setWordIndex((prev) => (prev + 1) % words.length);
+  }, 2000);
+
+  return () => clearInterval(interval);
+}, [wordInView, words.length]);
+
+  useEffect(() => {
+  const el = wordRef.current;
+  if (!el) return;
+
+  const observer = new IntersectionObserver(([entry]) => {
+    setWordInView(entry.isIntersecting);
+  });
+  observer.observe(el);
+
+  return () => {
+    observer.disconnect();
+    setWordInView(false);
+  };
+}, [activeTab]);
 
   useEffect(() => {
     let raf: number;
@@ -404,12 +434,25 @@ useEffect(() => {
           viewport={{ once: true }}
           className="w-full max-w-6xl mx-auto space-y-6 text-base sm:text-lg leading-relaxed text-blue-100 text-left"
         >
-          <p className="text-3xl sm:text-4xl md:text-6xl font-semibold leading-tight">
-            I am a{" "}
-            <span className="font-bold text-[#8fb3ff] transition-all duration-300">
-              {words[wordIndex]}
-            </span>
-          </p>
+          <p
+  ref={wordRef}
+  className="text-3xl sm:text-4xl md:text-6xl font-semibold leading-tight"
+>
+  I am a{" "}
+  <span className="inline-grid align-top font-bold text-[#8fb3ff]">
+    {words.map((w, i) => (
+      <span
+        key={w}
+        aria-hidden={i !== wordIndex}
+        className={`col-start-1 row-start-1 transition-opacity duration-300 ${
+          i === wordIndex ? "opacity-100" : "opacity-0"
+        }`}
+      >
+        {w}
+      </span>
+    ))}
+  </span>
+</p>
 
           <p className="text-lg sm:text-xl md:text-3xl">
             ...who is studying mechanical engineering with a concentration in mechatronics at the{" "}
@@ -444,7 +487,7 @@ useEffect(() => {
           </a>
 
           <a
-            href="/resume.pdf"
+            href="/resume_final.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="px-6 sm:px-8 py-3 sm:py-4 border-2 border-white text-white text-lg sm:text-2xl font-bold rounded-2xl hover:bg-[#8fb3ff] hover:scale-105 hover:text-[#1b2f77] transition-all duration-300 text-center"
@@ -471,56 +514,57 @@ useEffect(() => {
       Skills
     </motion.h2>
 
-<div className="grid grid-cols-3 lg:grid-cols-3 gap-8 lg:gap-10 justify-items-center w-fit mx-auto">
-      {skills.map((s) => {
-        const isActive = activeSkill === s.label;
+<div className="flex flex-wrap justify-center gap-4 sm:gap-5 lg:gap-6 w-full max-w-6xl px-2 sm:px-4 mx-auto">
 
-        return (
-          <motion.div
-            key={s.label}
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="show"
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true, amount: 0.3 }}
-            onTouchStart={(e) => {
-              e.stopPropagation();
-              setActiveSkill(prev => (prev === s.label ? null : s.label));
-            }}
-            className="w-[calc((100vw-6rem)/3)] max-w-52 aspect-square rounded-full border-2 border-[#0b1587] flex relative items-center justify-center overflow-hidden cursor-pointer group"
-          >
+  {skills.map((s) => {
+    const isActive = activeSkill === s.label;
 
-            {/* ICON */}
-            <img
-              src={s.img}
-              alt={s.label}
-              style={{ transform: `scale(${s.scale ?? 1})` }}
-              className={`
-              absolute w-16 sm:w-24 md:w-35 h-16 sm:h-24 md:h-35 object-contain transition-opacity duration-300
+    return (
+      <motion.div
+        key={s.label}
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="show"
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true, amount: 0.3 }}
+        onTouchStart={(e) => {
+          e.stopPropagation();
+          setActiveSkill(prev => (prev === s.label ? null : s.label));
+        }}
+       
 
-              ${isActive ? "opacity-0" : "opacity-100"}
+    
+      className="w-32 h-32 min-[400px]:w-36 min-[400px]:h-36 sm:w-40 sm:h-40 md:w-44 md:h-44 lg:w-48 lg:h-48 flex-none aspect-square rounded-full border-2 border-[#0b1587] flex relative items-center justify-center overflow-hidden cursor-pointer group">
+        {/* ICON */}
+        <img
+          src={s.img}
+          alt={s.label}
+          style={{ transform: `scale(${s.scale ?? 1})` }}
+          className={`
+            absolute w-3/5 h-3/5 object-contain transition-opacity duration-300
+            ${isActive ? "opacity-0" : "opacity-100"}
+            group-hover:opacity-0
+          `}
+        />
 
-              sm:group-hover:opacity-0
-            `}
-            />
-
-            {/* TEXT */}
-            <p
-             className={`
-              absolute text-[#0b1587] text-lg sm:text-2xl md:text-3xl font-bold text-center px-2 transition-opacity duration-300
-
-              ${isActive ? "opacity-100" : "opacity-0"}
-
-              sm:group-hover:opacity-100
-            `}
-            >
-              {s.label}
-            </p>
-
-          </motion.div>
-        );
-      })}
-    </div>
+        {/* TEXT */}
+        <p
+      className={`
+        absolute inset-0 flex items-center justify-center text-[#0b1587]
+        text-[clamp(1.2rem,2.3vw,1.5rem)]
+        font-bold text-center leading-tight
+        px-2 sm:px-3
+        transition-opacity duration-300
+        ${isActive ? "opacity-100" : "opacity-0"}
+        group-hover:opacity-100
+      `}
+        >
+          {s.label}
+        </p>
+      </motion.div>
+    );
+  })}
+</div>
 
   </div>
 </section>
@@ -580,6 +624,14 @@ useEffect(() => {
 
             <p className="text-white">
               • Dean’s List (September 2025 - April 2026)
+            </p>
+
+             <p className="text-white">
+              • Motorsports Powertrain (October 2026 - Present)
+            </p>
+
+             <p className="text-white">
+              • Marine Robotics AUV Mechanical (October 2026 - Present)
             </p>
           </motion.div>
 
@@ -686,7 +738,7 @@ useEffect(() => {
     >
       <div>
         <span className="text-blue-200 text-base md:text-lg block mb-6">
-          July 2026 - Current
+          July 2026 - Present
         </span>
         <p className="text-blue-100 text-base md:text-lg leading-relaxed">
           I am currently designing a drone that uses a Raspberry Pi to detect litter on the ground, fly to it, pick it up, and dispose of it at a garbage or recycling can according to its classification. This project is primarily utilizing 3D printing, Raspberry Pi 5 and accessories, machine learning, and a flight controller.
