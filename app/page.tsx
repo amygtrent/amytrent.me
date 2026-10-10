@@ -142,18 +142,18 @@ const [toggledImage, setToggledImage] =
   const [wordInView, setWordInView] = useState(false);
 
   const skills = [
-    { img: "/solidworksIcon.jpeg", label: "SolidWorks" },
+    { img: "/solidworksIcon.jpeg", label: "SolidWorks", scale: 1.1 },
     { img: "/javaIcon.jpeg", label: "Java" },
-    { img: "/cIcon.jpeg", label: "C" },
-    { img: "/arduinoIcon.jpeg", label: "Arduino" },
+    { img: "/cIcon.jpeg", label: "C", scale:1.12 },
+    { img: "/arduinoIcon.jpeg", label: "Arduino", scale: 1.12 },
     { img: "/raspberryPiIcon.png", label: "Raspberry Pi", scale: 1.7 },
     { img: "/yoloV8Icon.svg", label: "YOLOv8", scale: 0.9 },
     { img: "/3DprintingIcon.jpg", label: "3D Printing"},
-    { img: "/rIcon.png", label: "R (RStudio)"},
+    { img: "/rIcon.png", label: "R (RStudio)", scale: 1.13},
     { img: "/matlabIcon.png", label: "MATLAB"},
     { img: "/nxIcon.png", label: "Siemens NX", scale: 1.15},
-    { img: "/nextjsIcon.png", label: "Next.js"},
-    { img: "/reactIcon.jpeg", label: "React"},
+    { img: "/nextjsIcon.png", label: "Next.js", scale: 1.13},
+    { img: "/reactIcon.jpeg", label: "React", scale: 1},
     { img: "/excelIcon.jpeg", label: "Excel"},
     { img: "/typeScriptIcon.png", label: "TypeScript"},
     { img: "/colabIcon.png", label: "Google Colab", scale: 1.4},
@@ -315,7 +315,7 @@ useEffect(() => {
           <div className="relative z-10 flex flex-col items-center -translate-y-15 md:scale-[1.1] lg:scale-[1.3] scale-100 px-4">
             <div className="relative min-h-[140px] sm:min-h-[180px] md:h-[220px] flex items-center justify-center mb-10">
               <h1
- className="text-7xl sm:text-7xl md:text-8xl font-black text-center leading-[1.05] w-full"
+ className="text-[clamp(3.5rem,8vw,6rem)] font-black text-center leading-[1.05] w-full"
   style={{
     fontFamily: "Bebas Neue, sans-serif",
     color: "#2f53e5",
@@ -326,7 +326,7 @@ useEffect(() => {
 </h1>
 
 <h1
- className="absolute text-7xl sm:text-7xl md:text-8xl font-black text-center leading-[1.05] w-full"
+className="absolute text-[clamp(3.5rem,8vw,6rem)] font-black text-center leading-[1.05] w-full"
   style={{
     fontFamily: "Bebas Neue, sans-serif",
     color: "transparent",
@@ -516,54 +516,114 @@ useEffect(() => {
 
 <div className="flex flex-wrap justify-center gap-4 sm:gap-5 lg:gap-6 w-full max-w-6xl px-2 sm:px-4 mx-auto">
 
-  {skills.map((s) => {
-    const isActive = activeSkill === s.label;
-
-    return (
-      <motion.div
-        key={s.label}
-        variants={fadeUp}
-        initial="hidden"
-        whileInView="show"
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true, amount: 0.3 }}
-        onTouchStart={(e) => {
-          e.stopPropagation();
-          setActiveSkill(prev => (prev === s.label ? null : s.label));
-        }}
-       
-
-    
-      className="w-32 h-32 min-[400px]:w-36 min-[400px]:h-36 sm:w-40 sm:h-40 md:w-44 md:h-44 lg:w-48 lg:h-48 flex-none aspect-square rounded-full border-2 border-[#0b1587] flex relative items-center justify-center overflow-hidden cursor-pointer group">
-        {/* ICON */}
-        <img
-          src={s.img}
-          alt={s.label}
-          style={{ transform: `scale(${s.scale ?? 1})` }}
-          className={`
-            absolute w-3/5 h-3/5 object-contain transition-opacity duration-300
-            ${isActive ? "opacity-0" : "opacity-100"}
-            group-hover:opacity-0
-          `}
-        />
-
-        {/* TEXT */}
-        <p
-      className={`
-        absolute inset-0 flex items-center justify-center text-[#0b1587]
-        text-[clamp(1.2rem,2.3vw,1.5rem)]
-        font-bold text-center leading-tight
-        px-2 sm:px-3
-        transition-opacity duration-300
-        ${isActive ? "opacity-100" : "opacity-0"}
-        group-hover:opacity-100
-      `}
+  {/* DESKTOP: 5 / 6 / 5 */}
+  <div className="hidden lg:flex flex-wrap justify-center gap-4 sm:gap-5 lg:gap-6 w-full">
+    {[skills.slice(0, 5), skills.slice(5, 11), skills.slice(11, 16)].map(
+      (row, rowIndex) => (
+        <div
+          key={rowIndex}
+          className="flex justify-center gap-4 sm:gap-5 lg:gap-6 w-full"
         >
-          {s.label}
-        </p>
-      </motion.div>
-    );
-  })}
+          {row.map((s) => {
+            const isActive = activeSkill === s.label;
+
+            return (
+              <motion.div
+                key={s.label}
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="show"
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true, amount: 0.3 }}
+                onTouchStart={(e) => {
+                  e.stopPropagation();
+                  setActiveSkill(prev =>
+                    prev === s.label ? null : s.label
+                  );
+                }}
+className="w-[clamp(80px,13vw,192px)] h-[clamp(80px,13vw,192px)] flex-none aspect-square rounded-full border-2 border-[#0b1587] flex relative items-center justify-center overflow-hidden cursor-pointer group"              >
+                <img
+                  src={s.img}
+                  alt={s.label}
+                  style={{ transform: `scale(${s.scale ?? 1})` }}
+                  className={`
+                    absolute w-3/5 h-3/5 object-contain transition-opacity duration-300
+                    ${isActive ? "opacity-0" : "opacity-100"}
+                    group-hover:opacity-0
+                  `}
+                />
+
+                <p
+                  className={`
+                    absolute inset-0 flex items-center justify-center text-[#0b1587]
+                    text-[clamp(1.2rem,2.3vw,1.5rem)]
+                    font-bold text-center leading-tight
+                    px-2 sm:px-3
+                    transition-opacity duration-300
+                    ${isActive ? "opacity-100" : "opacity-0"}
+                    group-hover:opacity-100
+                  `}
+                >
+                  {s.label}
+                </p>
+              </motion.div>
+            );
+          })}
+        </div>
+      )
+    )}
+  </div>
+
+  {/* BELOW DESKTOP: ORIGINAL LAYOUT */}
+  <div className="flex lg:hidden flex-wrap justify-center gap-4 sm:gap-5 w-full">
+    {skills.map((s) => {
+      const isActive = activeSkill === s.label;
+
+      return (
+        <motion.div
+          key={s.label}
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true, amount: 0.3 }}
+          onTouchStart={(e) => {
+            e.stopPropagation();
+            setActiveSkill(prev =>
+              prev === s.label ? null : s.label
+            );
+          }}
+          className="w-32 h-32 min-[400px]:w-36 min-[400px]:h-36 sm:w-40 sm:h-40 md:w-44 md:h-44 flex-none aspect-square rounded-full border-2 border-[#0b1587] flex relative items-center justify-center overflow-hidden cursor-pointer group"
+        >
+          <img
+            src={s.img}
+            alt={s.label}
+            style={{ transform: `scale(${s.scale ?? 1})` }}
+            className={`
+              absolute w-3/5 h-3/5 object-contain transition-opacity duration-300
+              ${isActive ? "opacity-0" : "opacity-100"}
+              group-hover:opacity-0
+            `}
+          />
+
+          <p
+            className={`
+              absolute inset-0 flex items-center justify-center text-[#0b1587]
+              text-[clamp(1.2rem,2.3vw,1.5rem)]
+              font-bold text-center leading-tight
+              px-2 sm:px-3
+              transition-opacity duration-300
+              ${isActive ? "opacity-100" : "opacity-0"}
+              group-hover:opacity-100
+            `}
+          >
+            {s.label}
+          </p>
+        </motion.div>
+      );
+    })}
+  </div>
+
 </div>
 
   </div>
